@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import Rodape from '../Rodape';
@@ -26,12 +26,20 @@ export default function Sessoes() {
             <Content>
                 {sessao === null ? <h1>Loading...</h1> : sessao.days.map(
                     item =>
-                        <div>
-                            <span>`${item.weekday} - ${item.date}`</span>
+                        <div key={item.id}>
+                            <span>{item.weekday} - {item.date}</span>
+                            <div>
+                                {item.showtimes.map(
+                                    elemento =>
+                                        <Link key={elemento.id} to={`/assentos/${elemento.id}`}>
+                                            <button key={elemento.id}>{elemento.name}</button>
+                                        </Link>
+                                )}
+                            </div>
                         </div>
                 )}
             </Content>
-            <Rodape />
+            {sessao && <Rodape posterURL={sessao.posterURL} titulo={sessao.title} />}
         </>
     )
 }
