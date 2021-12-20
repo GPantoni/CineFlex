@@ -10,8 +10,7 @@ export default function Sessoes() {
     const { idFilme } = useParams();
 
     useEffect(() => {
-        const promessa = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/movies/${idFilme}/showtimes`);
-        promessa.then(resposta => setSessao(resposta.data));
+        axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/movies/${idFilme}/showtimes`).then(resposta => setSessao(resposta.data));
     }, []);
 
     console.log(sessao, idFilme);
@@ -51,7 +50,6 @@ const SectionTitle = styled.div`
     align-items: center;
 
     h2 {
-        font-family: Roboto;
         font-size: 24px;
         font-style: normal;
         font-weight: 400;
@@ -62,4 +60,39 @@ const SectionTitle = styled.div`
 `
 const Content = styled.div`
     width: 100%;
+    padding-left: 23px;
+
+    span {
+        margin-bottom: 20px;
+        
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.02em;
+
+        color: #293845;
+
+    }
+
+    button {
+        width: 83px;
+        height: 43px;
+
+        margin: 0 8px 30px 5px;
+
+        background: #E8833A;
+        border: none;
+        border-radius: 3px;
+
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: 0.02em;
+
+        color: #FFFFFF;
+    }
 `
